@@ -1,0 +1,38 @@
+# Practica 1 - Sintesis de voz
+# Solo hace falta para trabajar en LOCAL: en NIMROD ya esta todo instalado.
+#
+# REQUIERE Python 3.11 o superior.
+# Con GPU NVIDIA y Python 3.14+, puede que no existan todavia los paquetes de
+# PyTorch con CUDA; en CPU funciona igual. Comprobadlo con: python -V
+#
+# Con GPU NVIDIA, instalad PyTorch con CUDA ANTES que este fichero:
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# --- Nucleo ---
+torch>=2.2
+torchaudio>=2.2
+
+# --- Sintesis de voz ---
+piper-tts>=1.7          # candidato A, corre en CPU
+transformers>=4.40      # da acceso a MMS-TTS y otros modelos
+
+# --- Reconocimiento (evaluacion de inteligibilidad) ---
+faster-whisper>=1.0
+jiwer>=3.0              # calculo de WER y CER
+
+# --- Verificacion de locutor ---
+speechbrain>=1.0
+
+# --- Audio y fonetica ---
+librosa>=0.10
+soundfile>=0.12
+praat-parselmouth>=0.4  # analisis acustico (F0, duracion, formantes)
+
+# --- Datos y figuras ---
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+
+# --- Entorno de trabajo ---
+jupyterlab>=4.0
+ipywidgets>=8.0

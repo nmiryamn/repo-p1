@@ -1,0 +1,69 @@
+name: Comprobar entrega
+
+# Se ejecuta en cada push y deja un resumen en la pestaña Actions con lo que
+# falta por entregar. NO bloquea nada: durante la practica es normal que la
+# entrega este incompleta, asi que el flujo termina siempre en verde y lo que
+# hay que mirar es el resumen.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  estado:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # No se instalan torch ni los modelos: esta comprobacion solo mira la
+      # estructura de la entrega, y bajar PyTorch en cada push seria absurdo.
+      - name: Comprobar la entrega
+        id: comprobar
+        continue-on-error: true
+        run: |
+          python comprobar_entrega.py 2>&1 | tee salida.txt
+          echo "codigo=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Escribir el resumen
+        if: always()
+        run: |
+          {
+            echo "## Estado de la entrega"
+            echo ""
+            if [ "${{ steps.comprobar.outputs.codigo }}" = "0" ]; then
+              echo "La entrega esta **completa**."
+            else
+              echo "La entrega **todavia no esta completa**. Detalle:"
+            fi
+            echo ""
+            echo '```'
+            cat salida.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Comprobar que el cuaderno es valido
+        if: always()
+        run: |
+          python - <<'EOF'
+          import json, ast, sys
+          nb = json.load(open("p1_plantilla.ipynb", encoding="utf-8"))
+          malas = []
+          for i, c in enumerate(nb["cells"]):
+              if c["cell_type"] != "code":
+                  continue
+              try:
+                  ast.parse("".join(c["source"]))
+              except SyntaxError as e:
+                  malas.append((i, str(e)))
+          if malas:
+              for i, e in malas:
+                  print(f"Celda {i}: {e}")
+              sys.exit(1)
+          print(f"Cuaderno correcto: {len(nb['cells'])} celdas.")
+          EOF

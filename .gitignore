@@ -1,0 +1,26 @@
+# --- Audio generado -------------------------------------------------------
+# Son cientos de ficheros y se regeneran ejecutando el cuaderno.
+# muestras/ NO esta aqui: esas 15 muestras SI se entregan.
+audio/
+mos/
+
+# --- Modelos descargados --------------------------------------------------
+# Decenas o cientos de MB cada uno. Se descargan solos.
+modelos/
+hf/
+*.onnx
+*.onnx.json
+*.ckpt
+*.safetensors
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# --- Sistema --------------------------------------------------------------
+.DS_Store
+Thumbs.db
