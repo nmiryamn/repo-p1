@@ -3,7 +3,7 @@ f01	decl	La secretaría abre de nueve a dos.	la secretaría abre de nueve a dos
 f02	decl	Puede recoger el justificante en conserjería.	puede recoger el justificante en conserjería
 f03	int_abs	¿Tiene ya el certificado de notas?	tiene ya el certificado de notas
 f04	int_parc	¿Qué documento necesita presentar?	qué documento necesita presentar
-f05	cifras	El plazo acaba el 30/09 a las 14:00.	el plazo acaba el treinta de septiembre a las dos
+f05	cifras	El plazo acaba el 30/09 a las 14:00.	el plazo acaba el treinta de septiembre a las dos de la tarde
 f06	siglas	Entregue el TFG en la ETSI antes de junio.	entregue el te efe ge en la etsi antes de junio
 f07	decl	Las clases de este cuatrimestre comienzan en octubre.	las clases de este cuatrimestre comienzan en octubre
 f08	decl	El profesor ha publicado las notas finales en la plataforma.	el profesor ha publicado las notas finales en la plataforma
@@ -16,6 +16,6 @@ f14	int_parc	¿Cuándo es la fecha límite para solicitar la beca?	cuándo es la
 f15	int_parc	¿Dónde tengo que entregar la solicitud de traslado?	dónde tengo que entregar la solicitud de traslado
 f16	int_parc	¿Quién es el coordinador actual de su titulación?	quién es el coordinador actual de su titulación
 f17	cifras	La tasa de expedición cuesta 26,30 euros.	la tasa de expedición cuesta veintiséis con treinta euros
-f18	cifras	La revisión del examen será el 15/11 a las 10:45.	la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco
+f18	cifras	La revisión del examen será el 15/11 a las 10:45.	la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana
 f19	siglas	Por favor adjunte una copia de su DNI.	por favor adjunte una copia de su de ene i
 f20	siglas	El documento debe enviarse en formato PDF.	el documento debe enviarse en formato pe de efe
