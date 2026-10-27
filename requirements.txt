@@ -15,6 +15,7 @@ torchaudio>=2.2
 # --- Sintesis de voz ---
 piper-tts>=1.7          # candidato A, corre en CPU
 transformers>=4.40      # da acceso a MMS-TTS y otros modelos
+kokoro>=0.9.4           # candidato C (Kokoro-82M)
 
 # --- Reconocimiento (evaluacion de inteligibilidad) ---
 faster-whisper>=1.0
