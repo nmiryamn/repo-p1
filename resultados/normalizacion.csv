@@ -1,0 +1,21 @@
+id,categoria,texto,normalizado,igual_que_leida
+f01,decl,La secretaría abre de nueve a dos.,La secretaría abre de nueve a dos.,True
+f02,decl,Puede recoger el justificante en conserjería.,Puede recoger el justificante en conserjería.,True
+f03,int_abs,¿Tiene ya el certificado de notas?,¿Tiene ya el certificado de notas?,True
+f04,int_parc,¿Qué documento necesita presentar?,¿Qué documento necesita presentar?,True
+f05,cifras,El plazo acaba el 30/09 a las 14:00.,El plazo acaba el treinta de septiembre a las dos de la tarde.,True
+f06,siglas,Entregue el TFG en la ETSI antes de junio.,Entregue el te efe ge en la etsi antes de junio.,True
+f07,decl,Las clases de este cuatrimestre comienzan en octubre.,Las clases de este cuatrimestre comienzan en octubre.,True
+f08,decl,El profesor ha publicado las notas finales en la plataforma.,El profesor ha publicado las notas finales en la plataforma.,True
+f09,decl,La biblioteca central permanece abierta durante el fin de semana.,La biblioteca central permanece abierta durante el fin de semana.,True
+f10,decl,Los alumnos de nuevo ingreso deben asistir a la presentación.,Los alumnos de nuevo ingreso deben asistir a la presentación.,True
+f11,int_abs,¿Ha pagado ya las tasas de matrícula de este año?,¿Ha pagado ya las tasas de matrícula de este año?,True
+f12,int_abs,¿Está matriculado en todas las asignaturas optativas?,¿Está matriculado en todas las asignaturas optativas?,True
+f13,int_abs,¿Trae consigo el carnet de estudiante físico?,¿Trae consigo el carnet de estudiante físico?,True
+f14,int_parc,¿Cuándo es la fecha límite para solicitar la beca?,¿Cuándo es la fecha límite para solicitar la beca?,True
+f15,int_parc,¿Dónde tengo que entregar la solicitud de traslado?,¿Dónde tengo que entregar la solicitud de traslado?,True
+f16,int_parc,¿Quién es el coordinador actual de su titulación?,¿Quién es el coordinador actual de su titulación?,True
+f17,cifras,"La tasa de expedición cuesta 26,30 euros.",La tasa de expedición cuesta veintiséis con treinta euros.,True
+f18,cifras,La revisión del examen será el 15/11 a las 10:45.,La revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana.,True
+f19,siglas,Por favor adjunte una copia de su DNI.,Por favor adjunte una copia de su de ene i.,True
+f20,siglas,El documento debe enviarse en formato PDF.,El documento debe enviarse en formato pe de efe.,True
