@@ -1,0 +1,61 @@
+sistema,id,categoria,referencia,hipotesis,wer
+piper_sharvard,f01,decl,la secretaría abre de nueve a dos,La secretaría abre de 9 a 2.,0.2857142857142857
+piper_sharvard,f02,decl,puede recoger el justificante en conserjería,Puede recoger el justificante en Consejería.,0.16666666666666666
+piper_sharvard,f03,int_abs,tiene ya el certificado de notas,Tiene ya el certificado de notas.,0.0
+piper_sharvard,f04,int_parc,qué documento necesita presentar,¿Qué documento necesita presentar?,0.0
+piper_sharvard,f05,cifras,el plazo acaba el treinta de septiembre a las dos de la tarde,El plazo acaba el 30 de septiembre a las 2 de la tarde.,0.15384615384615385
+piper_sharvard,f06,siglas,entregue el te efe ge en la etsi antes de junio,Entré del TFG en la Lechiga antes de junio.,0.5454545454545454
+piper_sharvard,f07,decl,las clases de este cuatrimestre comienzan en octubre,Las clases de este cuatimestre comienzan en octubre.,0.125
+piper_sharvard,f08,decl,el profesor ha publicado las notas finales en la plataforma,El profesor ha publicado las notas finales en la plataforma.,0.0
+piper_sharvard,f09,decl,la biblioteca central permanece abierta durante el fin de semana,La Biblioteca Central permanece abierta durante el fin de semana.,0.0
+piper_sharvard,f10,decl,los alumnos de nuevo ingreso deben asistir a la presentación,Los alumnos de nuevo ingreso deben asistir a la presentación.,0.0
+piper_sharvard,f11,int_abs,ha pagado ya las tasas de matrícula de este año,ha pagado ya las tasas de matrícula de este año.,0.0
+piper_sharvard,f12,int_abs,está matriculado en todas las asignaturas optativas,Está matriculado en todas las asignaturas optativas.,0.0
+piper_sharvard,f13,int_abs,trae consigo el carnet de estudiante físico,trae consigo el carnet de estudiante físico.,0.0
+piper_sharvard,f14,int_parc,cuándo es la fecha límite para solicitar la beca,cuándo es la fecha límite para solicitar la beca.,0.0
+piper_sharvard,f15,int_parc,dónde tengo que entregar la solicitud de traslado,¿Dónde tengo que entregar la solicitud de traslado?,0.0
+piper_sharvard,f16,int_parc,quién es el coordinador actual de su titulación,quién es el coordinador actual de su titulación.,0.0
+piper_sharvard,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,"La tasa de expedición cuesta 26,30 euros.",0.3333333333333333
+piper_sharvard,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será el 15 de noviembre a las 10 y 40 y 5 de la mañana.,0.21052631578947367
+piper_sharvard,f19,siglas,por favor adjunte una copia de su de ene i,"Por favor, ajunte una copia de su Dreneri.",0.4
+piper_sharvard,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato PDF.,0.3333333333333333
+mms_spa,f01,decl,la secretaría abre de nueve a dos,La Secretaría abre de 9 a 2.,0.2857142857142857
+mms_spa,f02,decl,puede recoger el justificante en conserjería,Puede recoger el justificante en Consejería.,0.16666666666666666
+mms_spa,f03,int_abs,tiene ya el certificado de notas,Tiene ya el certificado de notas.,0.0
+mms_spa,f04,int_parc,qué documento necesita presentar,¿Qué documento necesita presentar?,0.0
+mms_spa,f05,cifras,el plazo acaba el treinta de septiembre a las dos de la tarde,El plazo acaba el 30 de septiembre a las 2 de la tarde.,0.15384615384615385
+mms_spa,f06,siglas,entregue el te efe ge en la etsi antes de junio,Entregue en tfk en la ex y antes de junio.,0.5454545454545454
+mms_spa,f07,decl,las clases de este cuatrimestre comienzan en octubre,Las clases de este cuatrimestre comienzan en octubre.,0.0
+mms_spa,f08,decl,el profesor ha publicado las notas finales en la plataforma,El profesor ha publicado las notas finales en la plataforma.,0.0
+mms_spa,f09,decl,la biblioteca central permanece abierta durante el fin de semana,La Biblioteca Central permanece abierta durante el fin de semana.,0.0
+mms_spa,f10,decl,los alumnos de nuevo ingreso deben asistir a la presentación,Los alumnos de nuevo ingreso deben asistir a la presentación.,0.0
+mms_spa,f11,int_abs,ha pagado ya las tasas de matrícula de este año,Ha pagado ya las tasas de matrícula de este año.,0.0
+mms_spa,f12,int_abs,está matriculado en todas las asignaturas optativas,Está matriculado en todas las asignaturas optativas.,0.0
+mms_spa,f13,int_abs,trae consigo el carnet de estudiante físico,Trae consigo el carnet de estudiante físico.,0.0
+mms_spa,f14,int_parc,cuándo es la fecha límite para solicitar la beca,¿Cuándo es la fecha límite para solicitar la beca?,0.0
+mms_spa,f15,int_parc,dónde tengo que entregar la solicitud de traslado,¿Dónde tengo que entregar la solicitud de traslado?,0.0
+mms_spa,f16,int_parc,quién es el coordinador actual de su titulación,¿Quién es el coordinador actual de su titulación?,0.0
+mms_spa,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,"La tasa de expedición cuesta 26,30 euros.",0.3333333333333333
+mms_spa,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será el 15 de noviembre a las 10 y 45 de la mañana.,0.2631578947368421
+mms_spa,f19,siglas,por favor adjunte una copia de su de ene i,"Por favor, acunte una copia de su DNA.",0.4
+mms_spa,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato PDF.,0.3333333333333333
+kokoro_santa,f01,decl,la secretaría abre de nueve a dos,La secretaría abre de 9 a 2.,0.2857142857142857
+kokoro_santa,f02,decl,puede recoger el justificante en conserjería,Puede recoger el justificante en conserjería.,0.0
+kokoro_santa,f03,int_abs,tiene ya el certificado de notas,Tiene ya el certificado de notas.,0.0
+kokoro_santa,f04,int_parc,qué documento necesita presentar,¿Qué documento necesita presentar?,0.0
+kokoro_santa,f05,cifras,el plazo acaba el treinta de septiembre a las dos de la tarde,El plazo acaba el 30 de septiembre a las 2 de la tarde.,0.15384615384615385
+kokoro_santa,f06,siglas,entregue el te efe ge en la etsi antes de junio,Entregue el TFG en la Etsy antes de junio.,0.36363636363636365
+kokoro_santa,f07,decl,las clases de este cuatrimestre comienzan en octubre,Las clases de este cuatrimestre comienzan en octubre.,0.0
+kokoro_santa,f08,decl,el profesor ha publicado las notas finales en la plataforma,El profesor ha publicado las notas finales en la plataforma.,0.0
+kokoro_santa,f09,decl,la biblioteca central permanece abierta durante el fin de semana,La biblioteca central permanece abierta durante el fin de semana.,0.0
+kokoro_santa,f10,decl,los alumnos de nuevo ingreso deben asistir a la presentación,Los alumnos de nuevo ingreso deben asistir a la presentación.,0.0
+kokoro_santa,f11,int_abs,ha pagado ya las tasas de matrícula de este año,Ha pagado ya las tasas de matrícula de este año.,0.0
+kokoro_santa,f12,int_abs,está matriculado en todas las asignaturas optativas,Está matriculado en todas las asignaturas optativas.,0.0
+kokoro_santa,f13,int_abs,trae consigo el carnet de estudiante físico,Trae consigo el carnet de estudiante físico.,0.0
+kokoro_santa,f14,int_parc,cuándo es la fecha límite para solicitar la beca,cuándo es la fecha límite para solicitar la beca.,0.0
+kokoro_santa,f15,int_parc,dónde tengo que entregar la solicitud de traslado,donde tengo que entregar la solicitud de traslado.,0.125
+kokoro_santa,f16,int_parc,quién es el coordinador actual de su titulación,quién es el coordinador actual de su titulación.,0.0
+kokoro_santa,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,"La tasa de expedición cuesta 26,30 euros.",0.3333333333333333
+kokoro_santa,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será el 15 de noviembre a las 10 y 45 de la mañana.,0.2631578947368421
+kokoro_santa,f19,siglas,por favor adjunte una copia de su de ene i,Por favor adjunte una copia de su DNI.,0.3
+kokoro_santa,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato PDF.,0.3333333333333333
