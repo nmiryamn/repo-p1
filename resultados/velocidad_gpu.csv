@@ -1,0 +1,5 @@
+sistema,rtf_mediano,rtf_p25,rtf_p75,t_sintesis_mediano,carga_s
+piper_gpu,0.034,0.028,0.037,0.096,1.195
+kokoro_santa,0.042,0.035,0.052,0.146,1.723
+mms_spa,0.044,0.038,0.059,0.172,1.262
+piper_sharvard,0.549,0.515,0.578,1.549,0.946
