@@ -236,6 +236,7 @@ def cargar_ecapa():
     global _ecapa
     if _ecapa is None:
         from speechbrain.inference.speaker import EncoderClassifier
+        from speechbrain.utils.fetching import LocalStrategy
 
         _ecapa = EncoderClassifier.from_hparams(
             source="speechbrain/spkrec-ecapa-voxceleb",
@@ -243,6 +244,9 @@ def cargar_ecapa():
             # "cuda:0", no "cuda": SpeechBrain no sabe interpretar la forma
             # corta y avisa de que cae a device 0 por su cuenta.
             run_opts={"device": "cuda:0" if dispositivo() == "cuda" else "cpu"},
+            # COPY, no el enlace simbolico por defecto: en Windows crear
+            # enlaces exige permisos de administrador (WinError 1314).
+            local_strategy=LocalStrategy.COPY,
         )
     return _ecapa
 
