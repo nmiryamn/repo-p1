@@ -1,202 +1,133 @@
-# Práctica 1 — Síntesis de voz
+# Práctica 1 — Síntesis de voz · Equipo 6
 
 **Procesamiento del Habla · Grado en Ingeniería Informática · ETSI · Universidad de Huelva**
 
-Este repositorio es el punto de partida de la Práctica 1. Contiene el cuaderno
-de trabajo y las funciones de apoyo; el enunciado completo, con las tareas y la
-rúbrica, está en el documento de la práctica publicado en Moodle.
+Álvaro Zarzuela Moncada · Miryam Merchán León · Sergio Velázquez López · Tomás Estrada Gómez
 
-El material funciona **igual en el servidor NIMROD y en vuestro propio
-ordenador**. El código detecta dónde se ejecuta y ajusta rutas y dispositivo de
-cómputo sin que tengáis que cambiar nada.
+Comparamos tres sistemas abiertos de síntesis de voz en español para decidir cuál usaríamos en un **asistente de voz de la secretaría universitaria**. Todos se miden sobre el mismo corpus de 20 frases del dominio: velocidad y recursos, control de la prosodia (velocidad, determinismo, preguntas, énfasis, cifras y siglas) y calidad (inteligibilidad, MOS y consistencia de la voz).
+
+El informe completo está en [`informe/`](informe/). Todas las cifras salen de [`p1_plantilla.ipynb`](p1_plantilla.ipynb).
 
 ---
 
-## Opción A — Trabajar en NIMROD (recomendada)
+## Resultado en una tabla
 
-Es la opción por defecto: tiene GPU, los modelos ya están cacheados y no hay
-nada que instalar.
+| | Piper (`es_ES-sharvard-medium`) | MMS-TTS (`facebook/mms-tts-spa`) | **Kokoro-82M (`em_santa`)** |
+|---|---|---|---|
+| Familia | VITS (ONNX) | VITS (PyTorch) | StyleTTS 2 |
+| Licencia de la voz | CC BY 3.0 | CC BY-NC 4.0 (no comercial) | Apache-2.0 |
+| RTF mediano CPU / GPU | 0,040 / 0,034 | 0,172 / 0,044 | 0,260 / 0,042 |
+| RAM al cargar | ~0,1 GB | ~0,3 GB | ~1,1 GB |
+| Fallos reales de inteligibilidad (20 frases) | 3 | 3 (2 graves en siglas) | 0 |
+| Consistencia de la voz (ECAPA, intra) | 0,80 | 0,58 | 0,79 |
+| ¿Sube al final en las preguntas de sí/no? | No | No | No (casi plana) |
 
-1. Con la red de la UHU o la VPN, entrad en `http://nimrod:7081`.
-2. Crear workspace con la plantilla `user-gpu`, poniendo vuestro número de equipo.
-3. En JupyterLab, celda nueva:
+**Recomendación: Kokoro** con el texto normalizado previamente. Es el que mejor se entiende y suena, y su licencia permite el uso. Es más lento en CPU, pero sigue siendo casi cuatro veces más rápido que el tiempo real. Piper queda como alternativa para máquinas pequeñas. El razonamiento completo está en las secciones 6 y 7 del informe.
 
-```python
-import shutil, pathlib
-shutil.copytree('/data/datasets/material-p1', '/data/equipo/p1-tts',
-                dirs_exist_ok=True)
-enlace = pathlib.Path.home() / 'equipo'
-if not enlace.exists():
-    enlace.symlink_to('/data/equipo')
-print(sorted(p.name for p in pathlib.Path('/data/equipo/p1-tts').iterdir()))
-```
+---
 
-4. Refrescad el panel de ficheros y abrid `equipo` → `p1-tts` → `p1_plantilla.ipynb`.
+## Qué hay en cada carpeta
 
-Para entregar, copiad vuestro trabajo a este repositorio y haced *commit*
-(ver «Qué se entrega», más abajo).
+| Ruta | Qué contiene |
+|---|---|
+| `p1_plantilla.ipynb` | **El cuaderno de la práctica.** Ejecuta todas las tareas en orden (sesiones 1, 2 y 3) y guarda debajo de cada una sus notas con los resultados y lo que oímos |
+| `frases.tsv` | Corpus de 20 frases del dominio: 6 declarativas, 4 interrogativas absolutas, 4 parciales, 3 con cifras y 3 con siglas. La columna `leida` es la pronunciación de referencia para el WER |
+| `scripts/tts_util.py` | Rutas, detección del entorno (NIMROD o local), carga del corpus |
+| `scripts/adaptadores.py` | Un adaptador por sistema (Piper, MMS, Kokoro) con la misma interfaz: `tts(texto, ruta, **parametros)` |
+| `scripts/analisis.py` | Medida del RTF y del tiempo de carga, análisis acústico (duración, F0, `final_st`), contornos |
+| `scripts/evaluacion.py` | Inteligibilidad con Whisper large-v3, preparación y análisis del MOS, consistencia con ECAPA-TDNN |
+| `scripts/normalizacion.py` | `normaliza()`: pasa fechas, horas, importes y siglas a letras antes de sintetizar (tarea 2.5) |
+| `resultados/` | Todas las tablas (`.csv`) y figuras (`.png`) que salen del cuaderno. Los ficheros `*_gpu.csv` son las medidas en GPU |
+| `muestras/` | Los 15 audios del panel MOS (5 frases × 3 sistemas) con nombres claros, para escuchar los sistemas sin ejecutar nada. Ver abajo |
+| `informe/` | Informe de la práctica (`informe.md` y su versión `informe.pdf`) |
+| `mos_clave.json` | Clave del MOS: qué sistema y qué frase hay detrás de cada código `E6_xx`. Se sube solo cuando los otros equipos han devuelto sus notas |
+| `docs/GUIA_MATERIAL.md` | La guía original del material de la asignatura (NIMROD, instalación, avisos conocidos) |
+| `comprobar_entorno.py` | Comprueba que están instaladas todas las dependencias |
+| `comprobar_entrega.py` | Comprueba que la entrega está completa. También se ejecuta en GitHub Actions en cada push |
 
-## Opción B — Trabajar en vuestro ordenador
+**Carpetas que se crean al ejecutar y no están en el repositorio** (las excluye el `.gitignore` por tamaño):
 
-Viable si tenéis máquina suficiente. Sin GPU todo funciona, solo que más
-despacio: lo que más se nota es el reconocedor de referencia de la sesión 3,
-que puede tardar varios minutos en transcribir las 20 frases.
+| Ruta | Qué contiene |
+|---|---|
+| `audio/` | Todos los audios generados: `audio/<sistema>/` con las 20 frases originales, `audio/normalizado/<sistema>/` con el texto normalizado, y una subcarpeta por experimento (`velocidad`, `determinismo`, `modalidad`, `foco`...) |
+| `modelos/` | Voces y modelos descargados (Piper, ECAPA) |
+| `mos/` | Las 15 muestras anonimizadas que se envían a los otros equipos |
 
-**Requisitos mínimos razonables:** 16 GB de RAM, 15 GB libres en disco y
-**Python 3.11 o superior**. Con GPU NVIDIA, mejor.
+### Las muestras
 
-> **Si tenéis GPU NVIDIA y Python 3.14 o posterior**, puede que todavía no
-> existan los paquetes de PyTorch compilados con CUDA para esa versión. En CPU
-> funciona igualmente; si queréis usar la GPU y la instalación falla, cread el
-> entorno con Python 3.12. Comprobad vuestra versión con `python3 -V`.
+Son las frases f01 (declarativa), f03 (pregunta de sí/no), f04 (pregunta con «qué»), f05 (fecha y hora) y f06 (siglas), sintetizadas a partir del texto normalizado. El nombre indica el sistema y la frase, por ejemplo `kokoro_santa_f05.wav`. Las frases completas están en `frases.tsv`.
+
+Merece la pena comparar f03 en los tres sistemas (ninguno entona la pregunta) y f06 en MMS (no consigue decir las siglas).
+
+---
+
+## Cómo ejecutarlo
+
+### En local (lo que usamos nosotros)
+
+Lo hemos ejecutado en **Windows 11 con Python 3.12**, en CPU. La GPU es opcional: sin ella todo funciona, pero más despacio.
 
 ```bash
-git clone <url-de-vuestro-repositorio>
-cd <carpeta>
+git clone https://github.com/nmiryamn/repo-p1.git
+cd repo-p1
 
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-python -V                        # 3.11 o superior
+py -3.12 -m venv .venv            # Linux/macOS: python3.12 -m venv .venv
+.venv\Scripts\activate            # Linux/macOS: source .venv/bin/activate
 
 pip install --upgrade pip
 pip install -r requirements.txt
-python comprobar_entorno.py      # comprueba que todo está en su sitio
+python comprobar_entorno.py
 
-jupyter lab
+jupyter lab                       # o abrir el cuaderno en VS Code
 ```
 
-### Si necesitáis otra versión de Python
+Con GPU NVIDIA en Windows hay que instalar PyTorch con CUDA **antes** que el `requirements.txt`, porque el paquete por defecto no trae CUDA. Los detalles están en [`docs/GUIA_MATERIAL.md`](docs/GUIA_MATERIAL.md).
 
-Hay que instalarla y usarla **al crear el entorno virtual**. Una vez activado
-el `.venv`, dentro ya es la correcta.
+### En NIMROD
 
-```bash
-# macOS con Homebrew
-brew install python@3.12
-/opt/homebrew/bin/python3.12 -m venv .venv
+Se siguen los pasos de la «Opción A» de [`docs/GUIA_MATERIAL.md`](docs/GUIA_MATERIAL.md). El código detecta el entorno y ajusta solo las rutas y el dispositivo.
 
-# Linux con pyenv
-pyenv install 3.12 && pyenv local 3.12
-python3 -m venv .venv
+### Orden de ejecución
 
-# Windows: instalad Python 3.12 desde python.org y despues
-py -3.12 -m venv .venv
-```
+1. Abrir `p1_plantilla.ipynb` y ejecutar **siempre primero** la celda de puesta en marcha (`preparar_entorno()`), que crea las carpetas.
+2. Ejecutar de arriba abajo. Lo ideal es **Kernel → Restart and Run All**.
+3. La primera vez se descargan los modelos: Piper (~77 MB), MMS (~145 MB), Kokoro (~330 MB), Whisper large-v3 (~3 GB) y ECAPA (~80 MB).
+4. Lo más lento en CPU es la transcripción con Whisper large-v3 de la sesión 3, que tarda varios minutos.
 
-### Si tenéis GPU NVIDIA, leed esto
+El cuaderno regenera todos los audios y todos los ficheros de `resultados/`. Piper y MMS no son deterministas con sus parámetros por defecto (tarea 2.2), así que al volver a ejecutarlo algunas cifras pueden cambiar en los decimales. Kokoro y Piper con el ruido a cero dan siempre lo mismo.
 
-**En Windows, `pip install torch` instala por defecto la versión SIN CUDA.** Se
-instala sin dar ningún error, importa bien, y `torch.cuda.is_available()`
-devuelve `False` aunque vuestra tarjeta esté perfecta. En Linux el paquete por
-defecto sí trae CUDA, así que esto afecta sobre todo a Windows.
+### Problemas que encontramos en Windows (ya resueltos en el código)
 
-Instalad PyTorch con CUDA **antes** del `requirements.txt`:
+- **Rutas con tildes.** La ruta de nuestro proyecto contiene «Informática» y «PRÁCTICAS», y eSpeak-NG no abre rutas con caracteres no ASCII: Piper y Kokoro cerraban el kernel sin dar ningún mensaje. `adaptadores.py` copia los datos de eSpeak a una ruta sin tildes.
+- **DLL de spacy bloqueada.** Kokoro importa spacy aunque para español no lo necesita, y el «Control inteligente de aplicaciones» de Windows 11 bloquea su DLL. `adaptadores.py` evita esa importación.
+- **Enlaces simbólicos de SpeechBrain.** Al descargar ECAPA, SpeechBrain crea enlaces simbólicos, y en Windows eso exige permisos de administrador (`WinError 1314`). `evaluacion.py` le indica que copie los ficheros.
+- **Piper con GPU.** Con `usar_gpu=True`, si onnxruntime no tiene CUDA, Piper sigue en CPU sin avisar. El cuaderno lo comprueba antes de medir, para no comparar CPU contra CPU.
 
-```bash
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128
-pip install -r requirements.txt
-```
+### Medidas en GPU
 
-Si ya habíais instalado el otro:
-
-```bash
-pip uninstall -y torch torchaudio
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128
-```
-
-`comprobar_entorno.py` detecta este caso y os lo dice. Para verlo a mano:
-
-```python
-import torch
-print(torch.__version__)        # si acaba en +cpu, no tiene CUDA
-print(torch.version.cuda)       # None, idem
-print(torch.cuda.is_available())
-```
-
-Si `torch.version.cuda` muestra un número y aun así no está disponible, el
-problema es el driver de NVIDIA: comprobadlo con `nvidia-smi`.
-
-Si la descarga falla, el selector de
-[pytorch.org/get-started/locally](https://pytorch.org/get-started/locally/) da
-el comando exacto para vuestra versión de CUDA.
-
-**Con 8 GB de VRAM** tenéis de sobra para la práctica, pero no carguéis los tres
-candidatos a la vez. Liberad con `del modelo` y `torch.cuda.empty_cache()`.
-
-En macOS con chip Apple, PyTorch usa la CPU para este material; es suficiente.
+No pudimos usar NIMROD. Con permiso del profesor, las medidas en GPU (tareas 1.3 y 1.4) se hicieron en un portátil con NVIDIA RTX 4060 Laptop (8 GB), ejecutando las mismas celdas. Se guardan aparte, en `resultados/*_gpu.csv`, para no pisar las de CPU.
 
 ---
 
-## Qué hay en el repositorio
+## Cómo hemos trabajado con git
 
-| Ruta | Qué es |
-|---|---|
-| `p1_plantilla.ipynb` | Cuaderno de trabajo. Por aquí se empieza |
-| `scripts/tts_util.py` | Rutas, detección de entorno, carga del corpus, `sin_ruido()` |
-| `scripts/adaptadores.py` | Envoltorios de Piper y MMS-TTS, y la plantilla para el vuestro |
-| `scripts/analisis.py` | RTF, análisis acústico con Praat, bootstrap |
-| `scripts/evaluacion.py` | Inteligibilidad, MOS y consistencia de voz |
-| `frases_ejemplo.tsv` | Formato del corpus, con seis frases de ejemplo |
-| `informe/informe.md` | Esqueleto del informe |
-| `comprobar_entorno.py` | Verifica que las dependencias están instaladas |
-| `comprobar_entrega.py` | Verifica que la entrega está completa |
-
-Los ficheros de `scripts/` están comentados y explican **por qué** cada medida se
-toma como se toma. Leedlos: de eso se pregunta en la defensa individual.
+- Una rama por tarea con prefijo de sesión (`s1/1.4-medidas-gpu`, `s2/2.5-normalizacion`, `s3/3.3-consistencia`...), y merge a `main` con commit de merge. No se hace commit directamente en `main`.
+- Los mensajes indican el tipo y la tarea: `data(1.1): ...` para datos, `feat(2.5): ...` para código y resultados, `docs(2.2): ...` para notas y textos, `fix(2.1): ...` para correcciones.
 
 ---
 
-## Qué se entrega
-
-Se entrega **en este repositorio**, con *commits* a lo largo de la práctica (no
-uno solo al final: el historial forma parte de la evaluación del trabajo en
-equipo).
-
-```
-informe/informe.pdf        el informe, máximo 15 páginas sin anexos
-p1_plantilla.ipynb         con todas las celdas ejecutadas
-frases.tsv                 vuestro corpus de 20 frases
-scripts/                   con vuestras modificaciones y normaliza()
-resultados/                todos los .csv y .png
-muestras/                  5 frases x 3 sistemas, con nombres claros
-mos_clave.json             la clave del panel MOS
-```
-
-Antes de entregar, ejecutad:
+## Entrega
 
 ```bash
 python comprobar_entrega.py
 ```
 
-### Qué NO se sube
+Comprueba que están el informe en PDF, el cuaderno ejecutado, `frases.tsv`, los scripts, los resultados, `muestras/` y `mos_clave.json`, y que ningún fichero pasa de 20 MB.
 
-El `.gitignore` ya excluye el audio generado, los modelos descargados y las
-cachés. **No los forcéis**: un repositorio con 74 MB de modelos por cada voz no
-se puede clonar con comodidad y GitHub acabará rechazándolo.
+## Créditos y licencias
 
-La excepción es `muestras/`, que sí se entrega: son las 15 muestras del panel
-MOS y ocupan poco.
-
----
-
-## Avisos que no son errores
-
-- `pthread_setaffinity_np failed`: ONNX Runtime intenta repartir hilos entre más
-  núcleos de los que tiene asignados. Por eso el material envuelve las llamadas
-  en `sin_ruido()`.
-- `Warning: unauthenticated requests to the HF Hub`: la descarga funciona, solo
-  va más lenta.
-- En NIMROD, «Startup scripts are still running»: lo provoca el gestor de la
-  cola, que corre permanentemente.
-- `groups: cannot find name for group ID 993`: inofensivo, solo en NIMROD.
-
-## Dos cosas que conviene saber antes de empezar
-
-- **La columna `leida` del corpus** decide lo que vais a medir. Si escribís
-  «treinta de septiembre» y el reconocedor devuelve «30/09», el WER saldrá
-  altísimo aunque la voz se haya entendido perfectamente. Decidid la convención
-  del equipo, dejadla escrita en el informe, y usad `evaluacion.resumen_wer()` y
-  `evaluacion.revisar()`.
-- **Piper no es «el rápido»**: medido en NIMROD, MMS-TTS en GPU resultó unas
-  trece veces más rápido. Lo que Piper es, es el que no consume GPU. Son dos
-  virtudes distintas y conviene no confundirlas en el informe.
+- Material de partida (cuaderno, `scripts/`, comprobadores): asignatura Procesamiento del Habla, DTI, ETSI, Universidad de Huelva. Lo que añadimos o cambiamos nosotros está en el historial de commits.
+- [Piper](https://github.com/OHF-Voice/piper1-gpl) (GPL-3.0) con la voz `es_ES-sharvard-medium` (CC BY 3.0).
+- [MMS-TTS](https://huggingface.co/facebook/mms-tts-spa) de Meta (CC BY-NC 4.0).
+- [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (Apache-2.0).
+- [Whisper large-v3](https://github.com/openai/whisper) vía faster-whisper, y [ECAPA-TDNN de SpeechBrain](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb).
