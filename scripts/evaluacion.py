@@ -151,12 +151,16 @@ def revisar(intel, categorias=("cifras", "siglas")):
 # ===========================================================================
 # 2. MOS — panel cruzado y ciego
 # ===========================================================================
-def preparar_mos(candidatos, frases, ids_elegidos, semilla=1):
+def preparar_mos(candidatos, frases, ids_elegidos, semilla=1,
+                 carpeta_audio=None, equipo=None):
     """Copia las muestras a evaluar con nombres anonimos y guarda la clave.
 
     El oyente no debe saber que sistema escucha, asi que los ficheros se
     renombran y se barajan. La clave se guarda en mos_clave.json y NO se
     comparte con los demas equipos hasta que devuelvan sus notas.
+
+    carpeta_audio: carpeta con una subcarpeta por sistema (por defecto AUDIO).
+    equipo: numero para el prefijo de los codigos (por defecto NIMROD_EQUIPO).
     """
     import json
     import random
@@ -165,16 +169,21 @@ def preparar_mos(candidatos, frases, ids_elegidos, semilla=1):
     random.seed(semilla)
     MOS.mkdir(parents=True, exist_ok=True)
 
+    carpeta_audio = pathlib.Path(carpeta_audio) if carpeta_audio else AUDIO
+    equipo = EQUIPO if equipo is None else equipo
+    if not equipo:
+        print("AVISO: sin numero de equipo, los codigos empiezan por E0_")
+
     muestras = [(s, i) for s in candidatos for i in ids_elegidos]
     random.shuffle(muestras)
 
     clave = {}
     for n, (sistema, idf) in enumerate(muestras, start=1):
-        origen = AUDIO / sistema / f"{idf}.wav"
+        origen = carpeta_audio / sistema / f"{idf}.wav"
         if not origen.exists():
             print(f"AVISO: falta {origen}")
             continue
-        codigo = f"E{EQUIPO}_{n:02d}"
+        codigo = f"E{equipo}_{n:02d}"
         shutil.copy(origen, MOS / f"{codigo}.wav")
         clave[codigo] = dict(sistema=sistema, frase=idf)
 

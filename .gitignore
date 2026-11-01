@@ -24,3 +24,9 @@ env/
 # --- Sistema --------------------------------------------------------------
 .DS_Store
 Thumbs.db
+
+# --- MOS (tarea 3.2) -------------------------------------------------------
+# La clave NO se sube hasta que los otros equipos devuelvan sus notas.
+# Quitad esta línea entonces: mos_clave.json se entrega.
+mos_clave.json
+mos_equipo*.zip
