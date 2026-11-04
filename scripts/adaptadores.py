@@ -172,9 +172,12 @@ def crear_kokoro(voz="em_santa", device=None):
     # En Windows 11 con Control inteligente de aplicaciones activado, la DLL
     # de spacy esta bloqueada. Para espanol no hace falta: se sustituye por
     # un modulo vacio (kokoro solo lo usa en anotaciones de tipos).
+    # Se captura cualquier excepcion, no solo ImportError: al cargar Kokoro
+    # por segunda vez en la misma sesion, spacy queda a medio importar y
+    # falla con ValueError («BLIS support requires blis»).
     try:
         import misaki.en  # noqa: F401
-    except ImportError:
+    except Exception:
         en = types.ModuleType("misaki.en")
         en.MToken = type("MToken", (), {})
         sys.modules["misaki.en"] = en

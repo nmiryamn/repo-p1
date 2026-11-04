@@ -16,13 +16,14 @@ El informe completo está en [`informe/`](informe/). Todas las cifras salen de [
 |---|---|---|---|
 | Familia | VITS (ONNX) | VITS (PyTorch) | StyleTTS 2 |
 | Licencia de la voz | CC BY 3.0 | CC BY-NC 4.0 (no comercial) | Apache-2.0 |
-| RTF mediano CPU / GPU | 0,040 / 0,034 | 0,172 / 0,044 | 0,260 / 0,042 |
+| RTF mediano CPU / GPU | 0,032 / 0,034 | 0,162 / 0,044 | 0,242 / 0,042 |
 | RAM al cargar | ~0,1 GB | ~0,3 GB | ~1,1 GB |
 | Fallos reales de inteligibilidad (20 frases) | 3 | 3 (2 graves en siglas) | 0 |
 | Consistencia de la voz (ECAPA, intra) | 0,80 | 0,58 | 0,79 |
+| MOS (90 notas de otros equipos, IC 95 %) | 3,57 [3,20-3,90] | 2,77 [2,43-3,10] | 3,40 [3,07-3,73] |
 | ¿Sube al final en las preguntas de sí/no? | No | No | No (casi plana) |
 
-**Recomendación: Kokoro** con el texto normalizado previamente. Es el que mejor se entiende y suena, y su licencia permite el uso. Es más lento en CPU, pero sigue siendo casi cuatro veces más rápido que el tiempo real. Piper queda como alternativa para máquinas pequeñas. El razonamiento completo está en las secciones 6 y 7 del informe.
+**Recomendación: Kokoro** con el texto normalizado previamente. Es el único sin fallos reales de inteligibilidad, mantiene la voz estable, empata con Piper en el MOS (los dos por encima de MMS) y su licencia permite el uso. Es más lento en CPU, pero sigue siendo unas cuatro veces más rápido que el tiempo real. Piper queda como alternativa para máquinas pequeñas. El razonamiento completo está en las secciones 6 y 7 del informe.
 
 ---
 
@@ -40,7 +41,7 @@ El informe completo está en [`informe/`](informe/). Todas las cifras salen de [
 | `resultados/` | Todas las tablas (`.csv`) y figuras (`.png`) que salen del cuaderno. Los ficheros `*_gpu.csv` son las medidas en GPU |
 | `muestras/` | Los 15 audios del panel MOS (5 frases × 3 sistemas) con nombres claros, para escuchar los sistemas sin ejecutar nada. Ver abajo |
 | `informe/` | Informe de la práctica (`informe.md` y su versión `informe.pdf`) |
-| `mos_clave.json` | Clave del MOS: qué sistema y qué frase hay detrás de cada código `E6_xx`. Se sube solo cuando los otros equipos han devuelto sus notas |
+| `mos_clave.json` | Clave del MOS: qué sistema y qué frase hay detrás de cada código `E6_xx`. Se subió cuando los otros equipos devolvieron sus notas |
 | `docs/GUIA_MATERIAL.md` | La guía original del material de la asignatura (NIMROD, instalación, avisos conocidos) |
 | `comprobar_entorno.py` | Comprueba que están instaladas todas las dependencias |
 | `comprobar_entrega.py` | Comprueba que la entrega está completa. También se ejecuta en GitHub Actions en cada push |

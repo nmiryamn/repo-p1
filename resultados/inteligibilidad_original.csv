@@ -15,16 +15,16 @@ piper_sharvard,f13,int_abs,trae consigo el carnet de estudiante físico,Trae con
 piper_sharvard,f14,int_parc,cuándo es la fecha límite para solicitar la beca,cuándo es la fecha límite para solicitar la beca.,0.0
 piper_sharvard,f15,int_parc,dónde tengo que entregar la solicitud de traslado,¿Dónde tengo que entregar la solicitud de traslado?,0.0
 piper_sharvard,f16,int_parc,quién es el coordinador actual de su titulación,quién es el coordinador actual de su titulación.,0.0
-piper_sharvard,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,"La tasa de expedición cuesta 26,30 euros.",0.3333333333333333
+piper_sharvard,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,"La tasa de inspección cuesta 26,30 euros.",0.4444444444444444
 piper_sharvard,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será el 15-11 a las 10.45.,0.5789473684210527
-piper_sharvard,f19,siglas,por favor adjunte una copia de su de ene i,Por favor ajunte una copia de su DNI.,0.4
+piper_sharvard,f19,siglas,por favor adjunte una copia de su de ene i,"Por favor, ajunte una copia de su DNI.",0.4
 piper_sharvard,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato PDF.,0.3333333333333333
 mms_spa,f01,decl,la secretaría abre de nueve a dos,La Secretaría abre de 9 a 2.,0.2857142857142857
-mms_spa,f02,decl,puede recoger el justificante en conserjería,Puede recoger justificante en consagería.,0.3333333333333333
+mms_spa,f02,decl,puede recoger el justificante en conserjería,Puede recoger el justificante en consajería.,0.16666666666666666
 mms_spa,f03,int_abs,tiene ya el certificado de notas,Tiene ya el certificado de notas.,0.0
 mms_spa,f04,int_parc,qué documento necesita presentar,¿Qué documento necesita presentar?,0.0
-mms_spa,f05,cifras,el plazo acaba el treinta de septiembre a las dos de la tarde,El plazo acaba el te...,0.6923076923076923
-mms_spa,f06,siglas,entregue el te efe ge en la etsi antes de junio,Entregue el TFC en la Etsy antes de junio.,0.36363636363636365
+mms_spa,f05,cifras,el plazo acaba el treinta de septiembre a las dos de la tarde,El plazo acaba el 3 de enero a las 5 de enero.,0.38461538461538464
+mms_spa,f06,siglas,entregue el te efe ge en la etsi antes de junio,Entregue el TFGRE en la Chialtes de Junio.,0.45454545454545453
 mms_spa,f07,decl,las clases de este cuatrimestre comienzan en octubre,Las clases de este cuatrimestre comienzan en octubre.,0.0
 mms_spa,f08,decl,el profesor ha publicado las notas finales en la plataforma,El profesor ha publicado las notas finales en la plataforma.,0.0
 mms_spa,f09,decl,la biblioteca central permanece abierta durante el fin de semana,La Biblioteca Central permanece abierta durante el fin de semana.,0.0
@@ -35,10 +35,10 @@ mms_spa,f13,int_abs,trae consigo el carnet de estudiante físico,Trae consigo el
 mms_spa,f14,int_parc,cuándo es la fecha límite para solicitar la beca,¿Cuándo es la fecha límite para solicitar la beca?,0.0
 mms_spa,f15,int_parc,dónde tengo que entregar la solicitud de traslado,¿Dónde tengo que entregar la solicitud de traslado?,0.0
 mms_spa,f16,int_parc,quién es el coordinador actual de su titulación,¿Quién es el coordinador actual de su titulación?,0.0
-mms_spa,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,La tasa de expedición cuesta CDT euros.,0.3333333333333333
-mms_spa,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será él.,0.7368421052631579
-mms_spa,f19,siglas,por favor adjunte una copia de su de ene i,"Por favor, ajunte una copia de su Denny.",0.4
-mms_spa,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato PUD.,0.3333333333333333
+mms_spa,f17,cifras,la tasa de expedición cuesta veintiséis con treinta euros,La tasa de expedición cuesta 12 euros.,0.3333333333333333
+mms_spa,f18,cifras,la revisión del examen será el quince de noviembre a las diez y cuarenta y cinco de la mañana,La revisión del examen será el tícel prosigla las dioses.,0.631578947368421
+mms_spa,f19,siglas,por favor adjunte una copia de su de ene i,"Por favor, acunte una copia de su DENI.",0.4
+mms_spa,f20,siglas,el documento debe enviarse en formato pe de efe,El documento debe enviarse en formato .,0.3333333333333333
 kokoro_santa,f01,decl,la secretaría abre de nueve a dos,La secretaría abre de 9 a 2.,0.2857142857142857
 kokoro_santa,f02,decl,puede recoger el justificante en conserjería,Puede recoger el justificante en conserjería.,0.0
 kokoro_santa,f03,int_abs,tiene ya el certificado de notas,Tiene ya el certificado de notas.,0.0
