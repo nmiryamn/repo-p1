@@ -1,0 +1,62 @@
+{
+  "E6_01": {
+    "sistema": "kokoro_santa",
+    "frase": "f06"
+  },
+  "E6_02": {
+    "sistema": "kokoro_santa",
+    "frase": "f01"
+  },
+  "E6_03": {
+    "sistema": "piper_sharvard",
+    "frase": "f01"
+  },
+  "E6_04": {
+    "sistema": "kokoro_santa",
+    "frase": "f05"
+  },
+  "E6_05": {
+    "sistema": "mms_spa",
+    "frase": "f03"
+  },
+  "E6_06": {
+    "sistema": "mms_spa",
+    "frase": "f01"
+  },
+  "E6_07": {
+    "sistema": "piper_sharvard",
+    "frase": "f05"
+  },
+  "E6_08": {
+    "sistema": "mms_spa",
+    "frase": "f05"
+  },
+  "E6_09": {
+    "sistema": "mms_spa",
+    "frase": "f04"
+  },
+  "E6_10": {
+    "sistema": "kokoro_santa",
+    "frase": "f03"
+  },
+  "E6_11": {
+    "sistema": "piper_sharvard",
+    "frase": "f06"
+  },
+  "E6_12": {
+    "sistema": "piper_sharvard",
+    "frase": "f03"
+  },
+  "E6_13": {
+    "sistema": "kokoro_santa",
+    "frase": "f04"
+  },
+  "E6_14": {
+    "sistema": "mms_spa",
+    "frase": "f06"
+  },
+  "E6_15": {
+    "sistema": "piper_sharvard",
+    "frase": "f04"
+  }
+}
